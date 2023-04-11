@@ -1,7 +1,7 @@
 const util = require("util");
 const fs = require("fs");
 // const { v4: uuidv4 } = require('uuid');
-// const uuid = require("uuid/v1");
+const uuid = require("uuid/v1");
 
 //cover promisify
 const readFileAsync = util.promisify(fs.readFile);
@@ -22,7 +22,7 @@ class Store {
             throw new Error("title and text cannot be blank")
         }
 
-        const newNote = { title, text, id:1}
+        const newNote = { title, text, id: uuid()}
 
         return this.getNotes()
         .then(notes => [...notes, newNote]) //what's the spread operator doing?
